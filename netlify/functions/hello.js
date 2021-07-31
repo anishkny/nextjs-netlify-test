@@ -5,6 +5,7 @@ exports.handler = async function (event, context) {
       {
         event,
         context,
+        env: process.env,
       },
       null,
       2
