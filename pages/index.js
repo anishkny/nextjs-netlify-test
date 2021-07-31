@@ -2,7 +2,7 @@ import useSWR from 'swr';
 
 const baseUrl = '/.netlify/functions';
 const fetcher = (partialUrl) =>
-  fetch(`${baseUrl}/${partialUrl}`).then((res) => res.json());
+  fetch(`${baseUrl}${partialUrl}`).then((res) => res.json());
 
 function HomePage() {
   const { data, error } = useSWR(`/hello`, fetcher);
