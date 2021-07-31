@@ -1,8 +1,17 @@
+import useSWR from 'swr';
+
+const baseUrl = '/.netlify/functions';
+const fetcher = (partialUrl) =>
+  fetch(`${baseUrl}/${partialUrl}`).then((res) => res.json());
+
 function HomePage() {
+  const { data, error } = useSWR(`/hello`, fetcher);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
   return (
     <div>
-      Welcome to Next.js! <hr />
-      <span>The time is {new Date().toUTCString()}</span>
+      Loaded from API: <pre>{JSON.stringify(data, null, 2)}!</pre>
     </div>
   );
 }
